@@ -49,17 +49,17 @@ FutureOr<Response> avatar(Request req) async {
             );
           }
 
-          final name = '${DateTime.now().millisecondsSinceEpoch}.$sufix';
+          final name = '${check['uid']}.$sufix';
+          final file = File('./uploads/$name');
 
-          await sb.client.storage
-              .from('images')
-              .upload(name, File.fromRawPath(bytes))
-              .then((res) {
-            if (res.error != null) print(res.error);
-          });
+          await file.writeAsBytes(bytes);
+
+          await sb.client.storage.from('images').upload(name, file);
 
           final download =
               await sb.client.storage.from('images').getPublicUrl(name);
+
+          await file.delete();
 
           final url = Uri.parse(download.data!);
 

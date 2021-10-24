@@ -50,7 +50,7 @@ FutureOr<Response> avatar(Request req) async {
           }
 
           final name = '${check['uid']}.$sufix';
-          final file = File('./uploads/$name');
+          final file = File.fromRawPath(bytes);
 
           await file.writeAsBytes(bytes);
 

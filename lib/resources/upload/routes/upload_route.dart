@@ -50,16 +50,13 @@ FutureOr<Response> avatar(Request req) async {
           }
 
           final name = '${check['uid']}.$sufix';
-          final file = File.fromRawPath(bytes);
 
-          await file.writeAsBytes(bytes);
+          final file = File.fromRawPath(bytes);
 
           await sb.client.storage.from('images').upload(name, file);
 
           final download =
               await sb.client.storage.from('images').getPublicUrl(name);
-
-          await file.delete();
 
           final url = Uri.parse(download.data!);
 

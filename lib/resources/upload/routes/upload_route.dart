@@ -54,6 +54,8 @@ FutureOr<Response> avatar(Request req) async {
 
           await file.writeAsBytes(bytes);
 
+          await sb.client.storage.from('images').remove([name]);
+
           await sb.client.storage.from('images').upload(name, file);
 
           final download =

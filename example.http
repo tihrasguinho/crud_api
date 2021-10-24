@@ -1,0 +1,38 @@
+
+POST {{baseUrl}}/auth/signin HTTP/1.1
+content-type: application/json
+
+{
+    "email": "tiago@gmail.com",
+    "password": "123456"
+}
+
+###
+
+POST {{baseUrl}}/auth/signup HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Deercheerup",
+    "email": "deercheerup@gmail.com",
+    "password": "123456"
+}
+
+###
+
+GET {{baseUrl}}/auth/refresh HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{refreshToken}}
+
+###
+
+GET {{baseUrl}}/users/get HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+###
+
+GET {{baseUrl}}/users/me HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+

@@ -1,8 +1,10 @@
-import 'package:crud_api/consts/supabase_consts.dart';
 import 'package:supabase/supabase.dart';
 
 class SupabaseService {
-  static final _client = SupabaseClient(supabaseUrl, supabaseKey);
+  static final _client = SupabaseClient(
+    String.fromEnvironment('SUPABASE_URL'),
+    String.fromEnvironment('SUPABASE_KEY'),
+  );
 
   SupabaseClient get client => _client;
 }

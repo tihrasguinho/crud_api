@@ -49,12 +49,10 @@ FutureOr<Response> avatar(Request req) async {
             );
           }
 
-          final name = '${check['uid']}.$sufix';
+          final name = '${DateTime.now().millisecondsSinceEpoch}.$sufix';
           final file = File('./uploads/$name');
 
           await file.writeAsBytes(bytes);
-
-          await sb.client.storage.from('images').remove([name]);
 
           await sb.client.storage.from('images').upload(name, file);
 
